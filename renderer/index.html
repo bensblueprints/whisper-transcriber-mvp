@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'" />
+  <title>Whisper Transcriber</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-mark">W</div>
+        <div>
+          <div class="brand-name">Whisper Transcriber</div>
+          <div class="brand-sub">Local &middot; Private &middot; Unlimited</div>
+        </div>
+      </div>
+
+      <div class="section-label">History</div>
+      <ul id="historyList" class="history-list"></ul>
+      <div id="historyEmpty" class="history-empty">No transcriptions yet.<br/>Drop a file to get started.</div>
+
+      <div class="sidebar-footer">
+        <span class="dot"></span> Your audio never leaves this machine
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="toolbar">
+        <div class="field">
+          <label for="modelSelect">Model</label>
+          <select id="modelSelect">
+            <option value="tiny.en">tiny.en &mdash; fastest (~78 MB)</option>
+            <option value="tiny">tiny &mdash; multilingual (~78 MB)</option>
+            <option value="base.en" selected>base.en &mdash; recommended (~148 MB)</option>
+            <option value="base">base &mdash; multilingual (~148 MB)</option>
+            <option value="small.en">small.en &mdash; more accurate (~488 MB)</option>
+            <option value="small">small &mdash; multilingual (~488 MB)</option>
+            <option value="medium.en">medium.en &mdash; most accurate (~1.5 GB)</option>
+            <option value="medium">medium &mdash; multilingual (~1.5 GB)</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="langSelect">Language</label>
+          <select id="langSelect">
+            <option value="auto" selected>Auto-detect</option>
+            <option value="en">English</option>
+          </select>
+        </div>
+        <div class="toolbar-right">
+          <span id="engineBadge" class="badge badge-warn">engine: checking&hellip;</span>
+        </div>
+      </header>
+
+      <div id="setupBar" class="setup-bar hidden">
+        <div class="setup-text" id="setupText">Downloading&hellip;</div>
+        <div class="progress-track"><div class="progress-fill" id="setupFill"></div></div>
+      </div>
+
+      <section id="dropZone" class="dropzone">
+        <div class="dz-icon">&#9835;</div>
+        <div class="dz-title">Drag &amp; drop audio or video</div>
+        <div class="dz-sub">mp3 &middot; wav &middot; m4a &middot; mp4 &middot; mov &middot; mkv &middot; flac &middot; ogg &hellip;</div>
+        <button id="browseBtn" class="btn btn-primary">Browse files</button>
+      </section>
+
+      <section id="jobPanel" class="job-panel hidden">
+        <div class="job-row">
+          <div class="job-name" id="jobName">file.mp3</div>
+          <div class="job-phase" id="jobPhase">Preparing&hellip;</div>
+        </div>
+        <div class="progress-track big"><div class="progress-fill" id="jobFill"></div></div>
+        <div class="job-pct" id="jobPct">0%</div>
+      </section>
+
+      <section id="resultPanel" class="result-panel hidden">
+        <div class="result-header">
+          <div>
+            <div class="result-title" id="resultTitle">Transcript</div>
+            <div class="result-meta" id="resultMeta"></div>
+          </div>
+          <div class="result-actions">
+            <button class="btn" id="copyBtn">Copy text</button>
+            <button class="btn" data-export="txt">TXT</button>
+            <button class="btn" data-export="srt">SRT</button>
+            <button class="btn" data-export="vtt">VTT</button>
+            <button class="btn" id="openFolderBtn" title="Open output folder">&#128193;</button>
+          </div>
+        </div>
+        <div class="segments" id="segments"></div>
+      </section>
+
+      <div id="toast" class="toast hidden"></div>
+    </main>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
