@@ -12,7 +12,7 @@ Whisper Transcriber is a desktop app that does what Otter.ai charges **$17/month
 
 Don't want to touch a terminal? Grab the packaged Windows installer (one-time purchase, lifetime updates):
 
-**→ [https://whop.com/onetime-suite](https://whop.com/onetime-suite)**
+**→ [https://whop.com/benjisaiempire/whisperdesk](https://whop.com/benjisaiempire/whisperdesk)**
 
 The source here is MIT-licensed and always will be — the installer is just the convenient, pre-packaged version.
 
