@@ -1,5 +1,9 @@
 # Whisper Transcriber
 
+## Demo
+
+VIDEO-PLACEHOLDER
+
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 **Unlimited local audio & video transcription. Pay once, own it forever. No subscription. Your audio never leaves your machine.**
