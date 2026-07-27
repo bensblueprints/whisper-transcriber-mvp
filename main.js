@@ -9,6 +9,7 @@ const dl = require('./src/lib/download');
 const { toWav16k, probeDuration } = require('./src/lib/transcode');
 const { transcribe } = require('./src/lib/whisper');
 const { History } = require('./src/lib/history');
+const { gateLicense, registerLicenseIpc } = require('./license-gate');
 
 const SMOKE = process.argv.includes('--smoke');
 let win = null;
@@ -46,7 +47,9 @@ function createWindow() {
   }
 }
 
-app.whenReady().then(() => {
+app.whenReady().then(async () => {
+  if (!(await gateLicense())) return; // quit already requested
+  registerLicenseIpc();
   dataDir = app.getPath('userData');
   history = new History(dataDir);
   createWindow();
